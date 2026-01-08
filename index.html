@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Hosting 5GB - Full Feature</title>
+  <style>
+    *{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    body{margin:0;background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);color:#fff}
+    .sidebar{position:fixed;left:0;top:0;width:240px;height:100vh;background:rgba(0,0,0,.45);padding:20px;overflow:auto}
+    .sidebar h2{color:#38bdf8;margin-top:0}
+    .sidebar a{display:block;color:#e5e7eb;text-decoration:none;padding:10px;border-radius:8px;margin-bottom:6px}
+    .sidebar a:hover{background:rgba(255,255,255,.1)}
+    .main{margin-left:240px;padding:25px}
+    .section{display:none}
+    .section.active{display:block}
+    .box{background:rgba(255,255,255,.1);padding:20px;border-radius:16px;margin-bottom:20px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+    .card{background:rgba(255,255,255,.12);padding:20px;border-radius:16px}
+    .card h3{margin:0;font-size:14px;color:#cbd5f5}
+    .card p{font-size:26px;margin-top:8px;color:#38bdf8;font-weight:bold}
+    table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.1);border-radius:14px;overflow:hidden}
+    th,td{padding:12px}
+    th{background:rgba(255,255,255,.15)}
+    tr:not(:last-child) td{border-bottom:1px solid rgba(255,255,255,.15)}
+    .progress{height:14px;background:rgba(255,255,255,.25);border-radius:10px;overflow:hidden;margin-top:10px}
+    .progress span{display:block;height:100%;width:40%;background:linear-gradient(90deg,#38bdf8,#22d3ee)}
+    button{background:#38bdf8;border:none;color:#000;padding:10px 16px;border-radius:10px;font-weight:bold;cursor:pointer}
+    input{width:100%;padding:10px;border-radius:8px;border:none;margin-top:8px}
+  </style>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY (DEMO) -->
+<div id="login" style="position:fixed;inset:0;background:linear-gradient(135deg,#020617,#0f172a);display:flex;align-items:center;justify-content:center;z-index:2000">
+  <div style="background:rgba(255,255,255,.1);padding:30px;border-radius:18px;width:320px">
+    <h2 style="margin-top:0;color:#38bdf8;text-align:center">Login Panel 5GB</h2>
+    <input id="user" placeholder="Username" />
+    <input id="pass" type="password" placeholder="Password" />
+    <br><br>
+    <button style="width:100%" onclick="login()">Masuk</button>
+    <p style="font-size:12px;opacity:.7;text-align:center;margin-top:10px">Demo login: admin / admin</p>
+  </div>
+</div>
+
+<div class="sidebar">
+  <h2>Panel 5GB</h2>
+  <a onclick="show('dash')">Dashboard</a>
+  <a onclick="show('file')">File Manager</a>
+  <a onclick="show('db')">Database</a>
+  <a onclick="show('web')">Website</a>
+  <a onclick="show('email')">Email</a>
+  <a onclick="show('band')">Bandwidth</a>
+  <a onclick="show('set')">Pengaturan</a>
+</div>
+
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dash" class="section active">
+  <div class="box">
+    <h1>Dashboard Hosting</h1>
+    <p>Status akun: <b style="color:#22c55e">Aktif</b></p>
+  </div>
+  <div class="cards">
+    <div class="card"><h3>Total Storage</h3><p>5 GB</p></div>
+    <div class="card"><h3>Terpakai</h3><p>2 GB</p></div>
+    <div class="card"><h3>Sisa</h3><p>3 GB</p></div>
+    <div class="card"><h3>Bandwidth</h3><p>Unlimited</p></div>
+  </div>
+  <div class="box">
+    <h3>Pemakaian Storage</h3>
+    <div class="progress"><span></span></div>
+    <small>2 GB dari 5 GB digunakan</small>
+  </div>
+</div>
+
+<!-- FILE MANAGER -->
+<div id="file" class="section">
+  <div class="box">
+    <h2>File Manager</h2>
+    <table>
+      <tr><th>Nama File</th><th>Ukuran</th><th>Aksi</th></tr>
+      <tr><td>index.html</td><td>12 KB</td><td>View | Delete</td></tr>
+      <tr><td>assets.zip</td><td>1.2 MB</td><td>Extract | Delete</td></tr>
+    </table>
+    <br><button>Upload File</button>
+  </div>
+</div>
+
+<!-- DATABASE -->
+<div id="db" class="section">
+  <div class="box">
+    <h2>Database Manager</h2>
+    <table>
+      <tr><th>Database</th><th>User</th><th>Status</th></tr>
+      <tr><td>db_website</td><td>admin</td><td>Aktif</td></tr>
+    </table>
+    <br><button>Buat Database</button>
+  </div>
+</div>
+
+<!-- WEBSITE -->
+<div id="web" class="section">
+  <div class="box">
+    <h2>Website Settings</h2>
+    <p>Domain: <b>example.com</b></p>
+    <p>Status: <b style="color:#22c55e">Online</b></p>
+    <button>Restart Website</button>
+  </div>
+</div>
+
+<!-- EMAIL -->
+<div id="email" class="section">
+  <div class="box">
+    <h2>Email Hosting</h2>
+    <table>
+      <tr><th>Email</th><th>Status</th></tr>
+      <tr><td>admin@example.com</td><td>Aktif</td></tr>
+    </table>
+    <br><button>Buat Email</button>
+  </div>
+</div>
+
+<!-- BANDWIDTH -->
+<div id="band" class="section">
+  <div class="box">
+    <h2>Bandwidth & Resource</h2>
+    <p>Bandwidth: Unlimited</p>
+    <p>CPU Usage: 25%</p>
+    <p>RAM Usage: 40%</p>
+  </div>
+</div>
+
+<!-- SETTINGS -->
+<div id="set" class="section">
+  <div class="box">
+    <h2>Pengaturan Akun</h2>
+    <label>Ganti Password</label>
+    <input type="password" placeholder="Password baru" />
+    <br><br><button>Simpan</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+  function show(id){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+function login(){
+  const u=document.getElementById('user').value;
+  const p=document.getElementById('pass').value;
+  if(u==='admin' && p==='admin'){
+    document.getElementById('login').style.display='none';
+  }else{ alert('Login gagal'); }
+}
+</script>
+
+<!-- LANGKAH SELANJUTNYA TERINTEGRASI -->
+<div class="main">
+  <div class="box">
+    <h2>Langkah Selanjutnya (Roadmap Panel 5GB)</h2>
+    <ol>
+      <li><b>Login System</b> – tambahkan autentikasi PHP + session untuk mengamankan panel.</li>
+      <li><b>File Manager Aktif</b> – hubungkan tombol upload & delete ke PHP agar file benar-benar tersimpan.</li>
+      <li><b>Hitung Storage Real</b> – scan folder user untuk menghitung pemakaian 5GB secara nyata.</li>
+      <li><b>Database MySQL</b> – buat & kelola database langsung dari panel.</li>
+      <li><b>Website Control</b> – restart website & atur PHP version (VPS).</li>
+      <li><b>Email Hosting</b> – kelola email domain.</li>
+      <li><b>Admin Panel</b> – kontrol user, paket, suspend.</li>
+      <li><b>Security</b> – limit upload, CSRF, proteksi folder.</li>
+    </ol>
+    <p>Panel HTML ini sudah siap dijadikan <b>frontend utama</b>. Tinggal hubungkan ke backend sesuai kebutuhan.</p>
+  </div>
+</div>
+
+</body>
+</html>
